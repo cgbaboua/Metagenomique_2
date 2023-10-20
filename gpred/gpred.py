@@ -60,8 +60,13 @@ def read_fasta(fasta_file: Path) -> str:
     :param fasta_file: (Path) Path to the fasta file.
     :return: (str) Sequence from the genome. 
     """
-    pass
-
+    my_str = ""
+    with open(fasta_file) as file : 
+        for line in file :
+            if line.startswith('>') :
+                continue
+            my_str = my_str + line.strip().upper()
+    return my_str
 
 def find_start(start_regex: Pattern, sequence: str, start: int, stop: int) -> Union[int, None]:
     """Find next start codon before a end position.
